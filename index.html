@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sheek Solutions LLC</title>
+  <style>
+    /* CSS Variables for Branding */
+    :root {
+      --primary-color: #003366;
+      --accent-color: #FFA500;
+      --font-heading: 'Montserrat', sans-serif;
+      --font-body: 'Roboto', sans-serif;
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family: var(--font-body); color: #333; }
+    a { text-decoration:none; color: inherit; }
+    header { position: sticky; top:0; background:#fff; border-bottom:1px solid #eee; }
+    .nav-container { display:flex; align-items:center; justify-content:space-between; max-width:1200px; margin:0 auto; padding:1rem; }
+    .nav-logo img { max-height:40px; }
+    nav ul { list-style:none; display:flex; gap:1.5rem; }
+    nav ul li a { font-weight:600; color: var(--primary-color); }
+    nav ul li a:hover { color: var(--accent-color); }
+    section { padding:4rem 1rem; max-width:1200px; margin:0 auto; }
+    .hero { position:relative; background:url('header-event.jpg') center/cover no-repeat; height:70vh; display:flex; align-items:center; justify-content:center; }
+    .hero::after { content:""; position:absolute; inset:0; background: rgba(0,0,0,0.5); }
+    .hero-content { position:relative; text-align:center; color:#fff; }
+    .hero-content h1 { font-family: var(--font-heading); font-size:3rem; margin-bottom:1rem; }
+    .hero-content p { font-size:1.2rem; opacity:0.8; margin-bottom:2rem; }
+    .btn-primary { background: var(--accent-color); color:#fff; padding:0.75rem 2rem; font-weight:600; border:none; cursor:pointer; }
+    .services-cards { display:grid; grid-template-columns:repeat(auto-fit, minmax(250px,1fr)); gap:2rem; margin-top:2rem; }
+    .card { background:#f9f9f9; padding:1.5rem; border-radius:8px; text-align:center; }
+    .card h3 { margin:1rem 0; font-family: var(--font-heading); }
+    .clients-carousel { display:flex; overflow-x:auto; gap:2rem; padding:2rem 0; }
+    .clients-carousel img { max-height:60px; filter:grayscale(100%); transition: filter 0.3s; }
+    .clients-carousel img:hover { filter:grayscale(0%); }
+    .three-cols { display:grid; grid-template-columns:repeat(3,1fr); gap:2rem; }
+    .three-cols .col { text-align:center; }
+    .col h4 { font-family: var(--font-heading); margin-bottom:0.5rem; color: var(--primary-color); }
+    .portfolio-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(300px,1fr)); gap:1.5rem; }
+    .portfolio-grid img { width:100%; border-radius:8px; }
+    form { display:grid; gap:1rem; }
+    form input, form textarea, form button { width:100%; padding:0.75rem; font-size:1rem; }
+    form button { background: var(--primary-color); color:#fff; border:none; cursor:pointer; }
+    footer { background:#003366; color:#fff; text-align:center; padding:2rem 1rem; }
+  </style>
+</head>
+<body>
+  <!-- Header & Navigation -->
+  <header>
+    <div class="nav-container">
+      <div class="nav-logo"><a href="#"><img src="logo.png" alt="Sheek Solutions Logo"></a></div>
+      <nav>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#rates">Rates &amp; Packages</a></li>
+          <li><a href="#portfolio">Portfolio</a></li>
+          <li><a href="#careers">Careers</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="home" class="hero">
+    <div class="hero-content">
+      <h1>Scalable AV &amp; Production Labor—On Time, On Budget</h1>
+      <p>Nationwide staffing for corporate events, broadcast, and live productions.</p>
+      <button class="btn-primary" onclick="location.href='#contact'">Request a Quote</button>
+    </div>
+  </section>
+
+  <!-- Core Services Teaser -->
+  <section id="services">
+    <h2>Our Core Services</h2>
+    <div class="services-cards">
+      <div class="card">
+        <img src="icon-showcalling.svg" alt="Show Calling Icon">
+        <h3>Show Calling</h3>
+        <p>Expert cue management for seamless event flow.</p>
+        <a href="#services">Learn More</a>
+      </div>
+      <div class="card">
+        <img src="icon-audio.svg" alt="Audio Engineering Icon">
+        <h3>Audio Engineering</h3>
+        <p>Professional FOH and monitor engineering.</p>
+        <a href="#services">Learn More</a>
+      </div>
+      <div class="card">
+        <img src="icon-video.svg" alt="Video Streaming Icon">
+        <h3>Video &amp; Streaming</h3>
+        <p>High-definition video and live stream support.</p>
+        <a href="#services">Learn More</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Clients Carousel -->
+  <section>
+    <h2>Trusted By</h2>
+    <div class="clients-carousel">
+      <img src="client1.png" alt="Client Logo">
+      <img src="client2.png" alt="Client Logo">
+      <img src="client3.png" alt="Client Logo">
+      <!-- Add more logos -->
+    </div>
+  </section>
+
+  <!-- Why Sheek Solutions -->
+  <section>
+    <div class="three-cols">
+      <div class="col">
+        <h4>Reliability</h4>
+        <p>Always on time, always prepared.</p>
+      </div>
+      <div class="col">
+        <h4>Technical Excellence</h4>
+        <p>Vetted and certified professionals.</p>
+      </div>
+      <div class="col">
+        <h4>Safety & Compliance</h4>
+        <p>Adhering to industry standards.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Portfolio -->
+  <section id="portfolio">
+    <h2>Featured Projects</h2>
+    <div class="portfolio-grid">
+      <img src="proj1.jpg" alt="Project 1">
+      <img src="proj2.jpg" alt="Project 2">
+      <img src="proj3.jpg" alt="Project 3">
+      <!-- Add more thumbnails -->
+    </div>
+  </section>
+
+  <!-- Careers Section -->
+  <section id="careers">
+    <h2>Join Our Crew</h2>
+    <p>We’re always looking for top-tier AV talent.</p>
+    <form action="https://docs.google.com/forms/d/e/YOUR_FORM_ID/formResponse" method="POST">
+      <input type="text" name="entry.123456" placeholder="Full Name" required>
+      <input type="email" name="entry.789012" placeholder="Email Address" required>
+      <input type="text" name="entry.345678" placeholder="Position Interested" required>
+      <textarea name="entry.901234" placeholder="Your Experience" rows="4"></textarea>
+      <button type="submit">Submit</button>
+    </form>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact">
+    <h2>Contact Us</h2>
+    <form>
+      <input type="text" placeholder="Name" required>
+      <input type="email" placeholder="Email" required>
+      <input type="text" placeholder="Company / Event">
+      <input type="date" placeholder="Event Date">
+      <textarea placeholder="How can we help?" rows="5"></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+    <p>Phone: (123) 456-7890 | Email: info@sheeksolutions.com</p>
+    <div id="map" style="width:100%;height:300px;"></div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Sheek Solutions LLC. All rights reserved.</p>
+  </footer>
+
+  <!-- Google Maps Script -->
+  <script>
+    function initMap() {
+      var office = { lat: 33.4484, lng: -112.0740 };
+      var map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 12,
+        center: office
+      });
+      new google.maps.Marker({ position: office, map: map });
+    }
+  </script>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap"></script>
+</body>
+</html>
