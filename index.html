@@ -32,7 +32,9 @@
     .hero-content p { font-size:1.2rem; opacity:0.8; margin-bottom:2rem; }
     .btn-primary { background: var(--accent-color); color:#fff; padding:0.75rem 2rem; font-weight:600; border:none; cursor:pointer; }
     .services-cards { display:grid; grid-template-columns:repeat(auto-fit, minmax(250px,1fr)); gap:2rem; margin-top:2rem; }
-    .card { background:#f9f9f9; padding:1.5rem; border-radius:8px; text-align:center; }
+    .card { position:relative; background:#f9f9f9; padding:1.5rem; border-radius:8px; text-align:center; overflow:hidden; }
+    .card .card-overlay { position:absolute; top:0; left:0; width:100%; height:100%; object-fit:cover; pointer-events:none; z-index:0; }
+    .card > *:not(.card-overlay) { position:relative; z-index:1; }
     .card h3 { margin:1rem 0; font-family: var(--font-heading); }
     .clients-carousel { display:flex; overflow-x:auto; gap:2rem; padding:2rem 0; }
     .clients-carousel img { max-height:60px; filter:grayscale(100%); transition: filter 0.3s; }
@@ -81,8 +83,9 @@
   <!-- Core Services Teaser -->
   <section id="services">
     <h2>Our Core Services</h2>
-    <div class="services-cards">
+      <div class="services-cards">
       <div class="card">
+        <img class="card-overlay" src="https://imgur.com/qqwyhuV.png" alt="">
         <img src="https://imgur.com/I8xrZ60.png" alt="Show Calling Icon" width="80" height="80">
         <h3>Show Calling</h3>
         <p>Expert cue management for seamless event flow.</p>
