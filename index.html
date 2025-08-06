@@ -35,7 +35,7 @@
     .btn-overlay::before { content:""; position:absolute; inset:0; background:#ffff00; z-index:-1; border-radius:4px; }
     .services-cards { display:grid; grid-template-columns:repeat(auto-fit, minmax(250px,1fr)); gap:2rem; margin-top:2rem; }
     .card { position:relative; background:#f9f9f9; padding:1.5rem; border-radius:8px; text-align:center; overflow:hidden; }
-    .card .card-overlay { position:absolute; top:0; left:0; width:100%; height:100%; object-fit:cover; pointer-events:none; z-index:0; }
+    .card .card-overlay { position:absolute; top:0; left:0; width:100%; height:220px; object-fit:cover; pointer-events:none; z-index:0; }
     .card > *:not(.card-overlay) { position:relative; z-index:1; }
     .card h3 { margin:1rem 0; font-family: var(--font-heading); }
     .glow-text { text-shadow: 0 0 5px rgba(255, 255, 255, 0.8); }
@@ -88,8 +88,8 @@
   <section id="services">
     <h2>Our Core Services</h2>
       <div class="services-cards">
-      <div class="card">
-        <img class="card-overlay" src="https://imgur.com/qqwyhuV.png" alt="">
+      <div class="card" style="height:220px;">
+        <img class="card-overlay" src="https://imgur.com/qqwyhuV.png" alt="" style="height:220px; width:100%; object-fit:cover;">
         <img class="glow-icon" src="https://imgur.com/hA0Ghts.png" alt="Show Calling Icon" width="80" height="80">
         <h3 style="color: #fff;">Show Calling</h3>
           <p class="glow-text" style="color: #fff;">Expert cue management for seamless event flow.</p>
@@ -101,7 +101,7 @@
         <p class="glow-text" style="color: #fff;">Professional FOH and Monitoring Engineering.</p>
         <a href="#services" class="btn-overlay">Learn More</a>
       </div>
-      <div class="card">
+      <div class="card" style="height:220px;">
         <img src="icon-video.svg" alt="Video Streaming Icon" width="80" height="80">
         <h3>Video &amp; Streaming</h3>
         <p>High-definition video and live stream support.</p>
