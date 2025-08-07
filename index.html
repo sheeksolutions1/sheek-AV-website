@@ -156,23 +156,17 @@
   <section id="careers">
     <h2>Join Our Crew</h2>
     <p>We’re always looking for top-tier AV talent.</p>
-    <form id="careers-form">
-      <input type="text" id="fullName" placeholder="Full Name" required>
-      <input type="email" id="emailAddress" placeholder="Email Address" required>
-      <input type="text" id="positionInterested" placeholder="Position Interested" required>
-      <textarea id="userExperience" placeholder="Your Experience" rows="4"></textarea>
-      <button type="submit">Submit</button>
+    <!-- Auto-submits to Google Forms in a hidden iframe -->
+    <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
+    <form id="careers-form" action="https://docs.google.com/forms/d/e/1FAIpQLSdgqxCoVbSnsVnLkvFDJxypx4qPWJk6Ob-Z9fq1j0s_AmSR4A/formResponse" method="POST" target="hidden_iframe">
+      <input type="text" name="entry.1111111" placeholder="Full Name" required>
+      <input type="email" name="entry.2222222" placeholder="Email Address" required>
+      <input type="text" name="entry.3333333" placeholder="Position Interested" required>
+      <textarea name="entry.4444444" placeholder="Your Experience" rows="4"></textarea>
     </form>
     <script>
-      document.getElementById('careers-form').addEventListener('submit', function (event) {
-        event.preventDefault();
-        const fullName = encodeURIComponent(document.getElementById('fullName').value);
-        const emailAddress = encodeURIComponent(document.getElementById('emailAddress').value);
-        const positionInterested = encodeURIComponent(document.getElementById('positionInterested').value);
-        const userExperience = encodeURIComponent(document.getElementById('userExperience').value);
-        const baseUrl = 'https://docs.google.com/forms/d/e/14379m2s5O2ER8_JIk_i__Lld8WBj6QqcX-eE80SnzUQ/viewform';
-        const query = `?entry.1111111=${fullName}&entry.2222222=${emailAddress}&entry.3333333=${positionInterested}&entry.4444444=${userExperience}`;
-        window.location.href = baseUrl + query;
+      window.addEventListener('load', function () {
+        document.getElementById('careers-form').submit();
       });
     </script>
   </section>
