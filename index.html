@@ -52,6 +52,8 @@
     form input, form textarea, form button { width:100%; padding:0.75rem; font-size:1rem; }
     form button { background: var(--primary-color); color:#fff; border:none; cursor:pointer; }
     footer { background:#003366; color:#fff; text-align:center; padding:2rem 1rem; }
+    .video-wrap { position: relative; width: 100%; aspect-ratio: 16/9; }
+    .video-wrap iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; border-radius: 8px; }
   </style>
 </head>
 <body>
@@ -149,6 +151,14 @@
       <img src="proj2.jpg" alt="Project 2">
       <img src="proj3.jpg" alt="Project 3">
       <!-- Add more thumbnails -->
+    </div>
+  </section>
+
+  <!-- Promo Video Section -->
+  <section id="promo-video">
+    <h2>Our Work in Action</h2>
+    <div class="video-wrap">
+      <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&mute=1&loop=1&playlist=dQw4w9WgXcQ" allow="autoplay; encrypted-media" allowfullscreen></iframe>
     </div>
   </section>
 
