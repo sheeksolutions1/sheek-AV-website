@@ -156,14 +156,28 @@
   <section id="careers">
     <h2>Join Our Crew</h2>
     <p>We’re always looking for top-tier AV talent.</p>
-    <form action="https://docs.google.com/forms/d/e/1FAIpQLSdgqxCoVbSnsVnLkvFDJxypx4qPWJk6Ob-Z9fq1j0s_AmSR4A/formResponse" method="POST" target="hidden_iframe">
+    <form id="joinCrewForm">
       <input type="text" name="entry.1111111" placeholder="Full Name" required>
       <input type="email" name="entry.2222222" placeholder="Email Address" required>
       <input type="text" name="entry.3333333" placeholder="Position Interested" required>
       <textarea name="entry.4444444" placeholder="Your Experience"></textarea>
       <button type="submit">Submit</button>
     </form>
-    <iframe name="hidden_iframe" style="display:none;"></iframe>
+    <script>
+      document.getElementById('joinCrewForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const fullName = encodeURIComponent(document.querySelector('input[name="entry.1111111"]').value);
+        const email = encodeURIComponent(document.querySelector('input[name="entry.2222222"]').value);
+        const position = encodeURIComponent(document.querySelector('input[name="entry.3333333"]').value);
+        const experience = encodeURIComponent(document.querySelector('textarea[name="entry.4444444"]').value);
+        const url = 'https://docs.google.com/forms/d/e/1FAIpQLSdgqxCoVbSnsVnLkvFDJxypx4qPWJk6Ob-Z9fq1j0s_AmSR4A/viewform'
+          + '?entry.1111111=' + fullName
+          + '&entry.2222222=' + email
+          + '&entry.3333333=' + position
+          + '&entry.4444444=' + experience;
+        location.href = url;
+      });
+    </script>
   </section>
 
   <!-- Contact Section -->
