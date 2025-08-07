@@ -279,7 +279,6 @@
       if(cancel){
         cancel.addEventListener('click', function(){ modal.classList.remove('show'); });
       }
-      // Close when clicking the backdrop
       modal && modal.addEventListener('click', function(e){
         if(e.target === modal) modal.classList.remove('show');
       });
@@ -295,11 +294,11 @@
           const subject = encodeURIComponent('Rates & Packages Inquiry');
           const body = encodeURIComponent(
             `Hi Sheek Solutions,\n\n` +
-            `I'd like your rates for an upcoming event.\n` +
+            `I’d like your rates and packages for an upcoming event.\n\n` +
             `Event Date: ${date}\n` +
             `Location: ${loc}\n` +
-            `Positions Needed: ${pos}\n\n` +
-            `Additional Info: ${notes}\n\n` +
+            `Positions Needed: ${pos}\n` +
+            `Additional Info (equipment, etc.): ${notes}\n\n` +
             `Thanks,\n[Your Name]`
           );
 
