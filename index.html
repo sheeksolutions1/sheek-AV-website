@@ -155,19 +155,14 @@
   <section id="careers">
     <h2>Join Our Crew</h2>
     <p>We’re always looking for top-tier AV talent.</p>
-    <!-- Google Form auto-submission -->
-    <form id="career-form" action="https://docs.google.com/forms/d/e/1FAIpQLSdgqxCoVbSnsVnLkvFDJxypx4qPWJk6Ob-Z9fq1j0s_AmSR4A/formResponse" method="POST" target="hidden_iframe" style="display:none;">
-      <input type="hidden" name="entry.123456" value="">
-      <input type="hidden" name="entry.789012" value="">
-      <input type="hidden" name="entry.345678" value="">
-      <input type="hidden" name="entry.901234" value="">
+    <!-- Google Form submission -->
+    <form action="https://docs.google.com/forms/d/e/1FAIpQLSdgqxCoVbSnsVnLkvFDJxypx4qPWJk6Ob-Z9fq1j0s_AmSR4A/formResponse" method="POST">
+      <input type="text" name="entry.123456" placeholder="Full Name" required>
+      <input type="email" name="entry.789012" placeholder="Email Address" required>
+      <input type="text" name="entry.345678" placeholder="Position Interested" required>
+      <textarea name="entry.901234" placeholder="Your Experience" rows="4"></textarea>
+      <button type="submit">Submit</button>
     </form>
-    <iframe name="hidden_iframe" style="display:none;"></iframe>
-    <script>
-      window.addEventListener('load', function () {
-        document.getElementById('career-form').submit();
-      });
-    </script>
   </section>
 
   <!-- Contact Section -->
