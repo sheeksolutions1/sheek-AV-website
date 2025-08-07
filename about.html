@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About - Sheek Solutions LLC</title>
+  <style>
+    :root {
+      --primary-color: #003366;
+      --accent-color: #FFA500;
+      --font-heading: 'Montserrat', sans-serif;
+      --font-body: 'Roboto', sans-serif;
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family: var(--font-body); color:#333; }
+    a { text-decoration:none; color: inherit; }
+    header { position: sticky; top:0; background:#fff; border-bottom:1px solid #eee; }
+    .nav-container { display:flex; align-items:center; justify-content:space-between; max-width:1200px; margin:0 auto; padding:1rem; }
+    .nav-logo img { max-height:40px; }
+    nav ul { list-style:none; display:flex; gap:1.5rem; }
+    nav ul li a { font-weight:600; color: var(--primary-color); }
+    nav ul li a:hover { color: var(--accent-color); }
+    section { padding:4rem 1rem; max-width:1200px; margin:0 auto; }
+    .hero { position:relative; background:url('https://imgur.com/1qSwsv5.png') center/contain no-repeat; height:40vh; display:flex; align-items:center; justify-content:center; }
+    .hero-content { position:relative; text-align:center; color: var(--primary-color); }
+    .hero-content h1 { font-family: var(--font-heading); font-size:2.5rem; margin-bottom:1rem; }
+    .hero-content p { font-size:1.2rem; opacity:0.8; }
+    .btn-primary { background: var(--accent-color); color:#fff; padding:0.75rem 2rem; font-weight:600; border:none; cursor:pointer; }
+    footer { background:#003366; color:#fff; text-align:center; padding:2rem 1rem; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="nav-container">
+      <div class="nav-logo"><a href="index.html#home"><img src="https://imgur.com/1qSwsv5.png" alt="Sheek Solutions Logo"></a></div>
+      <nav>
+        <ul>
+          <li><a href="index.html#home">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="index.html#services">Services</a></li>
+          <li><a href="index.html#rates">Rates &amp; Packages</a></li>
+          <li><a href="index.html#careers">Careers</a></li>
+          <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-content">
+      <h1>About Sheek Solutions</h1>
+      <p>Nationwide AV professionals powering corporate events, broadcasts, and live productions.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Our Mission</h2>
+    <p>Sheek Solutions LLC connects expert audiovisual crews with events across the country. We pride ourselves on reliability, technical excellence, and safety in every production.</p>
+  </section>
+
+  <section>
+    <h2>Join Our Crew</h2>
+    <p>Ready to work with top-tier AV professionals?</p>
+    <button class="btn-primary" onclick="window.location.href='index.html#careers';">Apply Now</button>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Sheek Solutions LLC. All rights reserved.</p>
+  </footer>
+</body>
+</html>
