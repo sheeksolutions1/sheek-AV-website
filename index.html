@@ -27,6 +27,14 @@
     .hero-content { position:relative; text-align:center; color: var(--primary-color); }
     .hero-content h1 { font-family: var(--font-heading); font-size:3rem; margin-bottom:1rem; }
     .hero-content p { font-size:1.2rem; opacity:0.8; margin-bottom:2rem; }
+    .hero-title-mobile{
+      display:none;
+      font-family: var(--font-heading);
+      font-size: 3rem;
+      margin: 0 0 1rem;
+      color: var(--primary-color);
+      text-align: center;
+    }
     .btn-primary { background: var(--accent-color); color:#fff; padding:0.75rem 2rem; font-weight:600; border:none; cursor:pointer; }
     .btn-overlay { position:relative; display:inline-block; padding:0.25rem 0.5rem; font-weight:600; color: var(--primary-color); }
     .btn-overlay::before { content:""; position:absolute; inset:0; background:#ffff00; z-index:-1; border-radius:4px; }
@@ -77,6 +85,11 @@
       }
       .hero-content h1{ font-size: 2rem; line-height: 1.2; }
       .hero-content p { font-size: 1rem; }
+    }
+
+    @media (max-width: 768px){
+      .hero-title-desktop{ display:none; }
+      .hero-title-mobile{ display:block; }
     }
 
     /* Mobile nav */
@@ -172,9 +185,8 @@
   <!-- Hero Section -->
   <section id="home" class="hero">
     <div class="hero-content">
-
-      <h1>Scalable AV &amp; Production Professionals</h1>
-
+      <h1 class="hero-title-desktop">Scalable AV &amp; Production Professionals</h1>
+      <h1 class="hero-title-mobile">Scalable AV &amp; Production Professionals</h1>
       <p>Nationwide staffing for corporate events, broadcast, and live productions.</p>
       <button class="btn-primary" onclick="window.location.href='mailto:sheeksolutions@gmail.com?subject=Quote%20Request';">Request a Quote</button>
     </div>
