@@ -87,3 +87,11 @@ img, video { max-width: 100%; height: auto; }
 @media (prefers-reduced-motion: reduce){
   .hero{ animation: none; opacity: 1; transform: none; }
 }
+
+/* Desktop-only hero background tweak */
+@media (min-width: 1024px){
+  .hero{
+    background-size: 95% auto !important; /* 5% smaller than current */
+    background-position: top center;      /* keep it centered at the top */
+  }
+}
