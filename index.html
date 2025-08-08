@@ -265,47 +265,46 @@
 
   <script>
     (function(){
-      const open  = document.getElementById('ratesTrigger');
-      const modal = document.getElementById('ratesModal');
-      const form  = document.getElementById('ratesForm');
-      const cancel= document.getElementById('ratesCancel');
+      const trigger = document.getElementById('ratesTrigger');
+      const modal   = document.getElementById('ratesModal');
+      const form    = document.getElementById('ratesForm');
+      const cancel  = document.getElementById('ratesCancel');
 
-      if(open){
-        open.addEventListener('click', function(e){
-          e.preventDefault();
-          modal.classList.add('show');
-        });
-      }
-      if(cancel){
-        cancel.addEventListener('click', function(){ modal.classList.remove('show'); });
-      }
+      // Open modal instead of mailto
+      trigger && trigger.addEventListener('click', function(e){
+        e.preventDefault();
+        modal.classList.add('show');
+      });
+
+      // Close modal
+      cancel && cancel.addEventListener('click', function(){
+        modal.classList.remove('show');
+      });
       modal && modal.addEventListener('click', function(e){
         if(e.target === modal) modal.classList.remove('show');
       });
 
-      if(form){
-        form.addEventListener('submit', function(e){
-          e.preventDefault();
-          const date = document.getElementById('rateDate').value || '';
-          const loc  = document.getElementById('rateLocation').value || '';
-          const pos  = document.getElementById('ratePositions').value || '';
-          const notes= document.getElementById('rateNotes').value || '';
+      // On submit, build the email
+      form && form.addEventListener('submit', function(e){
+        e.preventDefault();
+        const date  = document.getElementById('rateDate').value || '';
+        const loc   = document.getElementById('rateLocation').value || '';
+        const pos   = document.getElementById('ratePositions').value || '';
+        const notes = document.getElementById('rateNotes').value || '';
 
-          const subject = encodeURIComponent('Rates & Packages Inquiry');
-          const body = encodeURIComponent(
-            `Hi Sheek Solutions,\n\n` +
-            `I’d like your rates and packages for an upcoming event.\n\n` +
-            `Event Date: ${date}\n` +
-            `Location: ${loc}\n` +
-            `Positions Needed: ${pos}\n` +
-            `Additional Info (equipment, etc.): ${notes}\n\n` +
-            `Thanks,\n[Your Name]`
-          );
-
-          window.location.href = `mailto:sheeksolutions@gmail.com?subject=${subject}&body=${body}`;
-          modal.classList.remove('show');
-        });
-      }
+        const subject = encodeURIComponent('Rates & Packages Inquiry');
+        const body = encodeURIComponent(
+          `Hi Sheek Solutions,\n\n` +
+          `I’d like your rates and packages for an upcoming event.\n\n` +
+          `Event Date: ${date}\n` +
+          `Location: ${loc}\n` +
+          `Positions Needed: ${pos}\n` +
+          `Additional Info (equipment, etc.): ${notes}\n\n` +
+          `Thanks,\n[Your Name]`
+        );
+        window.location.href = `mailto:sheeksolutions@gmail.com?subject=${subject}&body=${body}`;
+        modal.classList.remove('show');
+      });
     })();
   </script>
 </body>
