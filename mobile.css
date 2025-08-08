@@ -18,6 +18,11 @@ img, video { max-width: 100%; height: auto; }
   text-align: center;
 }
 
+/* Mobile hero logo (hidden by default) */
+.hero-art-mobile{
+  display: none;
+}
+
 /* <=900px — mobile/tablet nav */
 @media (max-width: 900px){
   .nav-container{ flex-wrap: wrap; gap: .5rem; align-items: center; }
@@ -45,21 +50,28 @@ img, video { max-width: 100%; height: auto; }
   /* spacing */
   section{ padding: 2.5rem 1rem; }
 
-  /* shrink the cloud logo background & improve contrast */
-  .hero{
-    background-position: top center !important;
-    background-size: 60% auto !important;
-    height: 48vh;
-    padding-top: 1.25rem;
-  }
-  .hero::after{ background: rgba(255,255,255,0.20) !important; }
+  /* stop using the background so text can't overlap the wordmark */
+  .hero{ background: none !important; padding-top: 1rem; }
 
-  /* swap titles: hide desktop h1 over the logo, show mobile h1 above tagline */
-  .hero-content h1.hero-title-desktop{ display: none; }
-  .hero-title-mobile{ display: block; font-size: 1.6rem; margin-top: -50px; margin-bottom: 2em; /* extra space between title and tagline */ }
+  /* show the mobile-only logo image */
+  .hero-art-mobile{
+    display: block;
+    width: 68vw;
+    max-width: 420px;
+    height: auto;
+    margin: 0 auto 12px;
+  }
+
+  /* keep only the mobile title visible and keep it smaller */
+  .hero-title-desktop{ display: none; }
+  .hero-title-mobile{
+    display: block;
+    font-size: 1.5rem;
+    line-height: 1.15;
+    margin: 0 0 1.25rem;
+  }
 
   /* type sizes */
-  .hero-content h1{ font-size: 1.6rem; line-height: 1.2; }
   .hero-content p { font-size: 1rem; }
 
   /* cards/grid */
