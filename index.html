@@ -64,8 +64,18 @@
     /* Reduce section padding on small screens */
     @media (max-width: 768px) {
       section { padding: 2.5rem 1rem; }
-      .hero { height: 46vh; }
-      .hero-content h1 { font-size: 2rem; }
+      /* shrink the background logo behind the headline */
+      .hero {
+        background-position: top center !important;
+        background-size: 60% auto !important;   /* ↓ make the logo smaller on phones */
+        height: 48vh;                            /* slightly shorter hero */
+        padding-top: 1.25rem;
+      }
+      /* optional subtle overlay to boost contrast */
+      .hero::after {
+        background: rgba(255,255,255,0.20) !important;
+      }
+      .hero-content h1{ font-size: 2rem; line-height: 1.2; }
       .hero-content p { font-size: 1rem; }
     }
 
