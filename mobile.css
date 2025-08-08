@@ -102,8 +102,14 @@ img, video { max-width: 100%; height: auto; }
     background-position: top center;      /* keep it centered at the top */
   }
   .nav-logo .logo-img{
-    max-height:42px !important;
-    transform:none !important; /* cancel any previous scale() rules */
+    max-height:36px !important;      /* 10% smaller than 40px */
+    width:auto;
+    height:auto;
+    display:block;                 /* avoids baseline gap */
+    transform:none !important;     /* cancel any previous scale() rules */
   }
-  .nav-container{ padding-block:0.9rem; }
+  .nav-container{
+    padding-block:0.9rem;          /* bump if you still see clipping */
+    overflow:visible;              /* ensure nothing gets chopped */
+  }
 }
