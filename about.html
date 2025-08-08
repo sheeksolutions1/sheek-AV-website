@@ -25,14 +25,7 @@
     .hero-content { position:relative; text-align:center; color: var(--primary-color); }
     .hero-content h1 { font-family: var(--font-heading); font-size:2.5rem; margin-bottom:1rem; }
     .hero-content p { font-size:1.2rem; opacity:0.8; }
-    .hero-title-mobile{
-      display:none;
-      font-family: var(--font-heading);
-      font-size: 2.5rem;
-      margin: 0 0 1rem;
-      color: var(--primary-color);
-      text-align: center;
-    }
+      /* hero-title-mobile styles moved to mobile.css */
     .btn-primary { background: var(--accent-color); color:#fff; padding:0.75rem 2rem; font-weight:600; border:none; cursor:pointer; }
     footer { background:#003366; color:#fff; text-align:center; padding:2rem 1rem; }
     .modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.45);display:none;align-items:center;justify-content:center;z-index:1000}
@@ -44,51 +37,15 @@
     .btn{background:var(--primary-color);color:#fff;padding:.6rem 1rem;border:none;border-radius:6px;cursor:pointer;font-weight:700}
     .btn.secondary{background:#999}
 
-    /* Fluid media */
-    img, video { max-width: 100%; height: auto; }
+      /* mobile responsive rules moved to mobile.css */
 
-    /* Reduce section padding on small screens */
-    @media (max-width: 768px) {
-      section { padding: 2.5rem 1rem; }
-      .hero { height: 46vh; }
-      .hero-content h1 { font-size: 2rem; }
-      .hero-content p { font-size: 1rem; }
-    }
-
-    @media (max-width: 768px){
-      .hero-title-desktop{ display:none; }
-      .hero-title-mobile{ display:block; }
-    }
-
-    /* Mobile nav */
-    .nav-toggle {
-      display: none;
-      background: var(--primary-color);
-      color: #fff;
-      border: 0;
-      padding: .5rem .75rem;
-      border-radius: 6px;
-      font-size: 1.125rem;
-      line-height: 1;
-    }
-    @media (max-width: 900px) {
-      .nav-toggle { display: inline-block; }
-      #mainNav { display: none; }
-      header.nav-open #mainNav { display: block; }
-      #mainNav ul { flex-direction: column; gap: .75rem; padding-top: .75rem; }
-      .nav-container { align-items: center; }
-    }
+      .nav-toggle { display: none; }
 
     /* Grids stack nicely */
-    .services-cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 1rem;
-    }
-    .three-cols { display: grid; gap: 1.25rem; }
-    @media (min-width: 700px) {
-      .three-cols { grid-template-columns: repeat(3, 1fr); }
-    }
+      .three-cols { display: grid; gap: 1.25rem; }
+      @media (min-width: 700px) {
+        .three-cols { grid-template-columns: repeat(3, 1fr); }
+      }
 
     /* Cards & overlays behave on mobile */
     .card { border-radius: 8px; overflow: hidden; }
@@ -98,35 +55,7 @@
       aspect-ratio: 16/9;   /* keeps a nice banner ratio on small screens */
       object-fit: cover;
     }
-    @media (max-width: 480px) {
-      .btn-primary, .btn, .btn-overlay {
-        padding: .9rem 1.1rem;       /* bigger tap target */
-        font-size: 1rem;
-      }
-      input, textarea, select { font-size: 16px; } /* prevent iOS zoom */
-    }
-
-    /* general */
-    img, video { max-width:100%; height:auto; }
-
-    /* mobile header */
-    .nav-toggle{display:none; background:var(--primary-color); color:#fff; border:0; padding:.5rem .75rem; border-radius:6px; font-weight:700}
-    @media (max-width:900px){
-      .nav-container{flex-wrap:wrap; gap:.5rem}
-      .nav-logo img{max-height:28px}
-      .nav-toggle{display:inline-block}
-      #mainNav{display:none; width:100%}
-      header.nav-open #mainNav{display:block}
-      #mainNav ul{display:flex; flex-direction:column; gap:.75rem; padding-top:.5rem}
-    }
-
-    /* services cards on mobile: remove fixed heights so buttons are visible */
-    @media (max-width:768px){
-      .services-cards{grid-template-columns:1fr}
-      .card{height:auto !important; padding-bottom:1rem}
-      .card .card-overlay{height:auto !important; aspect-ratio:16/9; object-fit:cover}
-      .btn-overlay{display:inline-block; margin-top:.5rem; visibility:visible; opacity:1}
-    }
+    /* mobile-specific rules moved to mobile.css */
 
     @media (min-width: 1024px){
       /* Option A: scale without worrying about exact pixels */
@@ -140,7 +69,8 @@
       */
     }
   </style>
-</head>
+  <link rel="stylesheet" href="mobile.css">
+  </head>
 <body>
   <header>
     <div class="nav-container">
