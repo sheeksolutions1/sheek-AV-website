@@ -1,6 +1,13 @@
 /* Global safe helper */
 img, video { max-width: 100%; height: auto; }
 
+/* base */
+.nav-logo .logo-img{
+  width:auto;
+  object-fit:contain;
+  display:block;
+}
+
 /* Mobile-only alternate hero title (hidden by default; shown at <=768px) */
 .hero-title-mobile{
   display: none;
@@ -14,7 +21,7 @@ img, video { max-width: 100%; height: auto; }
 /* <=900px — mobile/tablet nav */
 @media (max-width: 900px){
   .nav-container{ flex-wrap: wrap; gap: .5rem; align-items: center; }
-  .nav-logo .logo-img{ max-height: 31px; }
+  .nav-logo .logo-img{ max-height: 31px !important; }
 
   .nav-toggle{
     display: inline-block;
@@ -88,10 +95,15 @@ img, video { max-width: 100%; height: auto; }
   .hero{ animation: none; opacity: 1; transform: none; }
 }
 
-/* Desktop-only hero background tweak */
+/* Desktop-only hero background tweak and header adjustments */
 @media (min-width: 1024px){
   .hero{
     background-size: 95% auto !important; /* 5% smaller than current */
     background-position: top center;      /* keep it centered at the top */
   }
+  .nav-logo .logo-img{
+    max-height:42px !important;
+    transform:none !important; /* cancel any previous scale() rules */
+  }
+  .nav-container{ padding-block:0.9rem; }
 }

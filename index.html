@@ -97,33 +97,6 @@
       .hero{ animation: none; opacity: 1; transform: none; }
     }
 
-    /* Desktop-only hero background tweak */
-    @media (min-width: 1024px){
-      .hero{
-        background-size: 95% auto !important; /* 5% smaller than current */
-        background-position: top center;      /* keep it centered at the top */
-      }
-    }
-    /* base */
-    .nav-logo .logo-img{ width:auto; object-fit:contain; display:block; }
-
-    /* MOBILE: +10% (28px -> ~31px) */
-    @media (max-width:900px){
-      .nav-logo .logo-img{ max-height:31px !important; }
-    }
-
-    /* DESKTOP: +5% (40px -> 42px) */
-    @media (min-width:1024px){
-      .nav-logo .logo-img{
-        max-height:42px !important;
-        transform:none !important; /* cancel any previous scale() rules */
-      }
-    }
-
-    /* Optional: slightly increase header padding on desktop */
-    @media (min-width:1024px){
-      .nav-container{ padding-block:0.9rem; }
-    }
   </style>
   <link rel="stylesheet" href="mobile.css">
   </head>
