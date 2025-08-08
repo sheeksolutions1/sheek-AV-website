@@ -17,7 +17,7 @@
     a { text-decoration:none; color: inherit; }
     header { position: sticky; top:0; background:#fff; border-bottom:1px solid #eee; }
     .nav-container { display:flex; align-items:center; justify-content:space-between; max-width:1200px; margin:0 auto; padding:1rem; }
-    .nav-logo img { max-height:40px; }
+    .nav-logo .logo-img { max-height:40px; }
     nav ul { list-style:none; display:flex; gap:1.5rem; }
     nav ul li a { font-weight:600; color: var(--primary-color); }
     nav ul li a:hover { color: var(--accent-color); }
@@ -97,23 +97,32 @@
       .hero{ animation: none; opacity: 1; transform: none; }
     }
 
-    @media (min-width: 1024px){
-      .nav-container { padding-block: 0.75rem; }      /* comfy header height */
-      .nav-logo .logo-img{
-        max-height: 38px;  /* tweak 36–42px if needed */
-        width: auto;
-        object-fit: contain;
-        display: block;
-        transform: none !important;    /* kill any earlier scale() */
-      }
-    }
-
     /* Desktop-only hero background tweak */
     @media (min-width: 1024px){
       .hero{
         background-size: 95% auto !important; /* 5% smaller than current */
         background-position: top center;      /* keep it centered at the top */
       }
+    }
+    /* base */
+    .nav-logo .logo-img{ width:auto; object-fit:contain; display:block; }
+
+    /* MOBILE: +10% (28px -> ~31px) */
+    @media (max-width:900px){
+      .nav-logo .logo-img{ max-height:31px !important; }
+    }
+
+    /* DESKTOP: +5% (40px -> 42px) */
+    @media (min-width:1024px){
+      .nav-logo .logo-img{
+        max-height:42px !important;
+        transform:none !important; /* cancel any previous scale() rules */
+      }
+    }
+
+    /* Optional: slightly increase header padding on desktop */
+    @media (min-width:1024px){
+      .nav-container{ padding-block:0.9rem; }
     }
   </style>
   <link rel="stylesheet" href="mobile.css">
