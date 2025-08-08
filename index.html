@@ -284,7 +284,7 @@
       });
     </script>
     <p>Phone: 818-216-7329 | Email: sheeksolutions@gmail.com</p>
-    <div id="map" style="width:100%;height:300px;"></div>
+    <div id="osm-map" style="width:100%;height:300px;border-radius:8px;"></div>
   </section>
 
   <!-- Footer -->
@@ -292,18 +292,45 @@
     <p>&copy; 2025 Sheek Solutions LLC. All rights reserved.</p>
   </footer>
 
-  <!-- Google Maps Script -->
+  <!-- Leaflet CSS/JS -->
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+    crossorigin=""
+  />
+  <script
+    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+    crossorigin=""
+  ></script>
+
   <script>
-    function initMap() {
-      var office = { lat: 33.4484, lng: -112.0740 };
-      var map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 12,
-        center: office
-      });
-      new google.maps.Marker({ position: office, map: map });
-    }
+    (function(){
+      const address = '5036 N 54th Ave, STE 7, Glendale AZ 85301';
+
+      function initMap(lat, lon, zoom){
+        const map = L.map('osm-map').setView([lat, lon], zoom);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          attribution: '© OpenStreetMap contributors'
+        }).addTo(map);
+        L.marker([lat, lon]).addTo(map).bindPopup(address).openPopup();
+      }
+
+      // Geocode the address with Nominatim, then render the map
+      fetch('https://nominatim.openstreetmap.org/search?format=json&q=' + encodeURIComponent(address))
+        .then(r => r.json())
+        .then(results => {
+          if (results && results[0]) {
+            initMap(parseFloat(results[0].lat), parseFloat(results[0].lon), 16);
+          } else {
+            // Fallback: Glendale center
+            initMap(33.5387, -112.1860, 12);
+          }
+        })
+        .catch(() => initMap(33.5387, -112.1860, 12));
+    })();
   </script>
-  <script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap"></script>
   <div class="modal-backdrop" id="ratesModal">
     <div class="modal" role="dialog" aria-modal="true" aria-labelledby="ratesTitle">
       <h3 id="ratesTitle">Rates &amp; Packages — Quick Details</h3>
