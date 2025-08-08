@@ -14,7 +14,7 @@ img, video { max-width: 100%; height: auto; }
 /* <=900px — mobile/tablet nav */
 @media (max-width: 900px){
   .nav-container{ flex-wrap: wrap; gap: .5rem; align-items: center; }
-  .nav-logo img{ max-height: 28px; }
+  .nav-logo .logo-img{ max-height: 31px; }
 
   .nav-toggle{
     display: inline-block;
