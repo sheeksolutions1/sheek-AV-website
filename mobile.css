@@ -1,6 +1,13 @@
 /* Global safe helper */
 img, video { max-width: 100%; height: auto; }
 
+.hero-art{
+  width: min(900px, 80vw);
+  height: auto;
+  display: block;
+  margin: 0 auto 1rem;
+}
+
 /* Mobile-only alternate hero title (hidden by default; shown at <=768px) */
 .hero-title-mobile{
   display: none;
@@ -38,14 +45,13 @@ img, video { max-width: 100%; height: auto; }
   /* spacing */
   section{ padding: 2.5rem 1rem; }
 
-  /* shrink the cloud logo background & improve contrast */
+  /* mobile hero adjustments */
   .hero{
-    background-position: top center !important;
-    background-size: 60% auto !important;
     height: 48vh;
     padding-top: 1.25rem;
   }
   .hero::after{ background: rgba(255,255,255,0.20) !important; }
+  .hero-art{ width: 60vw; }
 
   /* swap titles: hide desktop h1 over the logo, show mobile h1 above tagline */
   .hero-content h1.hero-title-desktop{ display: none; }
@@ -88,10 +94,3 @@ img, video { max-width: 100%; height: auto; }
   .hero{ animation: none; opacity: 1; transform: none; }
 }
 
-/* Desktop-only hero background tweak */
-@media (min-width: 1024px){
-  .hero{
-    background-size: 95% auto !important; /* 5% smaller than current */
-    background-position: top center;      /* keep it centered at the top */
-  }
-}

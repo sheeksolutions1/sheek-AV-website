@@ -22,7 +22,7 @@
     nav ul li a { font-weight:600; color: var(--primary-color); }
     nav ul li a:hover { color: var(--accent-color); }
     section { padding:4rem 1rem; max-width:1200px; margin:0 auto; }
-    .hero { position:relative; background:url('https://imgur.com/1qSwsv5.png') center/cover no-repeat; height:70vh; display:flex; align-items:center; justify-content:center; }
+    .hero { position:relative; height:70vh; display:flex; align-items:center; justify-content:center; }
     .hero::after { content:""; position:absolute; inset:0; background: transparent; }
     .hero-content { position:relative; text-align:center; color: var(--primary-color); }
     .hero-content h1 { font-family: var(--font-heading); font-size:3rem; margin-bottom:1rem; }
@@ -108,13 +108,6 @@
       }
     }
 
-    /* Desktop-only hero background tweak */
-    @media (min-width: 1024px){
-      .hero{
-        background-size: 95% auto !important; /* 5% smaller than current */
-        background-position: top center;      /* keep it centered at the top */
-      }
-    }
   </style>
   <link rel="stylesheet" href="mobile.css">
   </head>
@@ -142,6 +135,7 @@
   <!-- Hero Section -->
   <section id="home" class="hero">
     <div class="hero-content">
+      <img class="hero-art" src="https://imgur.com/1qSwsv5.png" alt="Sheek Solutions logo">
       <h1 class="hero-title-desktop">Scalable AV &amp; Production Professionals</h1>
       <h1 class="hero-title-mobile">Scalable AV &amp; Production Professionals</h1>
       <p>Nationwide staffing for corporate events, broadcast, and live productions.</p>
