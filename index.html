@@ -22,10 +22,7 @@
     nav ul li a { font-weight:600; color: var(--primary-color); }
     nav ul li a:hover { color: var(--accent-color); }
     section { padding:4rem 1rem; max-width:1200px; margin:0 auto; }
-    .hero { position:relative; background:url('https://imgur.com/qqwyhuV.png') center/contain no-repeat; height:70vh; display:flex; align-items:center; justify-content:center; }
-    .hero::after { content:""; position:absolute; inset:0; background: rgba(255, 165, 0, 0.25); z-index:1; }
-    .hero-content { position:relative; text-align:center; color: var(--primary-color); z-index:2; }
-    .hero { position:relative; background:url('https://imgur.com/1qSwsv5.png') center/contain no-repeat; height:70vh; display:flex; align-items:center; justify-content:center; }
+    .hero { position:relative; background:url('https://imgur.com/1qSwsv5.png') center/cover no-repeat; height:70vh; display:flex; align-items:center; justify-content:center; }
     .hero::after { content:""; position:absolute; inset:0; background: transparent; }
     .hero-content { position:relative; text-align:center; color: var(--primary-color); }
     .hero-content h1 { font-family: var(--font-heading); font-size:3rem; margin-bottom:1rem; }
@@ -60,6 +57,63 @@
     .modal .actions{display:flex;gap:.75rem;justify-content:flex-end;margin-top:1rem}
     .btn{background:var(--primary-color);color:#fff;padding:.6rem 1rem;border:none;border-radius:6px;cursor:pointer;font-weight:700}
     .btn.secondary{background:#999}
+
+    /* Fluid media */
+    img, video { max-width: 100%; height: auto; }
+
+    /* Reduce section padding on small screens */
+    @media (max-width: 768px) {
+      section { padding: 2.5rem 1rem; }
+      .hero { height: 46vh; }
+      .hero-content h1 { font-size: 2rem; }
+      .hero-content p { font-size: 1rem; }
+    }
+
+    /* Mobile nav */
+    .nav-toggle {
+      display: none;
+      background: var(--primary-color);
+      color: #fff;
+      border: 0;
+      padding: .5rem .75rem;
+      border-radius: 6px;
+      font-size: 1.125rem;
+      line-height: 1;
+    }
+    @media (max-width: 900px) {
+      .nav-toggle { display: inline-block; }
+      #mainNav { display: none; }
+      header.nav-open #mainNav { display: block; }
+      #mainNav ul { flex-direction: column; gap: .75rem; padding-top: .75rem; }
+      .nav-container { align-items: center; }
+    }
+
+    /* Grids stack nicely */
+    .services-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+    }
+    .three-cols { display: grid; gap: 1.25rem; }
+    @media (min-width: 700px) {
+      .three-cols { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    /* Cards & overlays behave on mobile */
+    .card { border-radius: 8px; overflow: hidden; }
+    .card .card-overlay {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 16/9;   /* keeps a nice banner ratio on small screens */
+      object-fit: cover;
+    }
+    @media (max-width: 480px) {
+      .btn-primary, .btn, .btn-overlay {
+        padding: .9rem 1.1rem;       /* bigger tap target */
+        font-size: 1rem;
+      }
+      input, textarea, select { font-size: 16px; } /* prevent iOS zoom */
+    }
   </style>
 </head>
 <body>
@@ -67,12 +121,15 @@
   <header>
     <div class="nav-container">
       <div class="nav-logo"><a href="#"><img src="https://imgur.com/1qSwsv5.png" alt="Sheek Solutions Logo"></a></div>
-      <nav>
+      <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mainNav">
+        ☰
+      </button>
+      <nav id="mainNav">
         <ul>
           <li><a href="#home">Home</a></li>
           <li><a href="about.html">About</a></li>
           <li><a href="#services">Services</a></li>
-          <li><a href="#" id="ratesTrigger">Rates &amp; Packages</a></li>
+          <li><a href="#rates" id="ratesTrigger">Rates &amp; Packages</a></li>
           <li><a href="#careers">Careers</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
@@ -305,6 +362,18 @@
         window.location.href = `mailto:sheeksolutions@gmail.com?subject=${subject}&body=${body}`;
         modal.classList.remove('show');
       });
+    })();
+  </script>
+  <script>
+    (function(){
+      const header = document.querySelector('header');
+      const toggle = document.getElementById('navToggle');
+      if (toggle && header) {
+        toggle.addEventListener('click', function(){
+          const open = header.classList.toggle('nav-open');
+          toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+        });
+      }
     })();
   </script>
 </body>
