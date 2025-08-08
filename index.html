@@ -77,18 +77,6 @@
     }
     /* mobile-specific rules moved to mobile.css */
 
-    @media (min-width: 1024px){
-      /* Option A: scale without worrying about exact pixels */
-      .nav-logo img{
-        transform: scale(0.95);
-        transform-origin: left center;
-      }
-
-      /* Option B (if a fixed height exists, e.g., 40px): uncomment to override to 38px
-      .nav-logo img{ max-height: 38px !important; }
-      */
-    }
-
     /* Hero load-in animation */
     .hero{
       opacity: 0;
@@ -108,6 +96,17 @@
     @media (prefers-reduced-motion: reduce){
       .hero{ animation: none; opacity: 1; transform: none; }
     }
+
+    @media (min-width: 1024px){
+      .nav-container { padding-block: 0.75rem; }      /* comfy header height */
+      .nav-logo .logo-img{
+        max-height: 38px;  /* tweak 36–42px if needed */
+        width: auto;
+        object-fit: contain;
+        display: block;
+        transform: none !important;    /* kill any earlier scale() */
+      }
+    }
   </style>
   <link rel="stylesheet" href="mobile.css">
   </head>
@@ -115,7 +114,7 @@
   <!-- Header & Navigation -->
   <header>
     <div class="nav-container">
-      <div class="nav-logo"><a href="#"><img src="https://imgur.com/1qSwsv5.png" alt="Sheek Solutions Logo"></a></div>
+      <div class="nav-logo"><a href="#"><img src="https://imgur.com/1qSwsv5.png" alt="Sheek Solutions Logo" class="logo-img"></a></div>
       <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mainNav">
         ☰
       </button>
