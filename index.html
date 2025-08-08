@@ -329,10 +329,12 @@
 
   <script>
     (function(){
-      const address = '5036 N 54th Ave, STE 7, Glendale AZ 85301';
+      const raw = '5036 N 54th Ave, STE 7, Glendale AZ 85301';
+      const q = raw.replace(/\b(ste|suite)\s*\d+\b/i, '').trim();
+      const address = raw;
 
-      function initMap(lat, lon, zoom){
-        const map = L.map('osm-map').setView([lat, lon], zoom);
+      function initMap(lat, lon){
+        const map = L.map('osm-map').setView([lat, lon], 17);
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
           attribution: '© OpenStreetMap contributors'
         }).addTo(map);
@@ -340,17 +342,10 @@
       }
 
       // Geocode the address with Nominatim, then render the map
-      fetch('https://nominatim.openstreetmap.org/search?format=json&q=' + encodeURIComponent(address))
+      fetch('https://nominatim.openstreetmap.org/search?format=json&countrycodes=us&limit=1&q=' + encodeURIComponent(q))
         .then(r => r.json())
-        .then(results => {
-          if (results && results[0]) {
-            initMap(parseFloat(results[0].lat), parseFloat(results[0].lon), 16);
-          } else {
-            // Fallback: Glendale center
-            initMap(33.5387, -112.1860, 12);
-          }
-        })
-        .catch(() => initMap(33.5387, -112.1860, 12));
+        .then(d => d[0] ? initMap(+d[0].lat, +d[0].lon) : initMap(33.5387, -112.1860))
+        .catch(() => initMap(33.5387, -112.1860));
     })();
   </script>
   <div class="modal-backdrop" id="ratesModal">
