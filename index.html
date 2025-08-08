@@ -114,6 +114,28 @@
       }
       input, textarea, select { font-size: 16px; } /* prevent iOS zoom */
     }
+
+    /* general */
+    img, video { max-width:100%; height:auto; }
+
+    /* mobile header */
+    .nav-toggle{display:none; background:var(--primary-color); color:#fff; border:0; padding:.5rem .75rem; border-radius:6px; font-weight:700}
+    @media (max-width:900px){
+      .nav-container{flex-wrap:wrap; gap:.5rem}
+      .nav-logo img{max-height:28px}
+      .nav-toggle{display:inline-block}
+      #mainNav{display:none; width:100%}
+      header.nav-open #mainNav{display:block}
+      #mainNav ul{display:flex; flex-direction:column; gap:.75rem; padding-top:.5rem}
+    }
+
+    /* services cards on mobile: remove fixed heights so buttons are visible */
+    @media (max-width:768px){
+      .services-cards{grid-template-columns:1fr}
+      .card{height:auto !important; padding-bottom:1rem}
+      .card .card-overlay{height:auto !important; aspect-ratio:16/9; object-fit:cover}
+      .btn-overlay{display:inline-block; margin-top:.5rem; visibility:visible; opacity:1}
+    }
   </style>
 </head>
 <body>
@@ -129,7 +151,7 @@
           <li><a href="#home">Home</a></li>
           <li><a href="about.html">About</a></li>
           <li><a href="#services">Services</a></li>
-          <li><a href="#rates" id="ratesTrigger">Rates &amp; Packages</a></li>
+          <li><a href="#" id="ratesTrigger">Rates &amp; Packages</a></li>
           <li><a href="#careers">Careers</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
