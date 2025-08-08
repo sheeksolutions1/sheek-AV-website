@@ -159,6 +159,18 @@
       .card .card-overlay{height:auto !important; aspect-ratio:16/9; object-fit:cover}
       .btn-overlay{display:inline-block; margin-top:.5rem; visibility:visible; opacity:1}
     }
+
+    @media (min-width: 1024px){
+      /* Option A: scale without worrying about exact pixels */
+      .nav-logo img{
+        transform: scale(0.95);
+        transform-origin: left center;
+      }
+
+      /* Option B (if a fixed height exists, e.g., 40px): uncomment to override to 38px
+      .nav-logo img{ max-height: 38px !important; }
+      */
+    }
   </style>
 </head>
 <body>
