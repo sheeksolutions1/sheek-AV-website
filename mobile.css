@@ -49,10 +49,10 @@ img, video { max-width: 100%; height: auto; }
 
   /* swap titles: hide desktop h1 over the logo, show mobile h1 above tagline */
   .hero-content h1.hero-title-desktop{ display: none; }
-  .hero-title-mobile{ display: block; }
+  .hero-title-mobile{ display: block; font-size: 1.6rem; }
 
   /* type sizes */
-  .hero-content h1{ font-size: 2rem; line-height: 1.2; }
+  .hero-content h1{ font-size: 1.6rem; line-height: 1.2; }
   .hero-content p { font-size: 1rem; }
 
   /* cards/grid */
