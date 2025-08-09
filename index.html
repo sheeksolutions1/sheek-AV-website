@@ -99,6 +99,25 @@
 
   </style>
   <link rel="stylesheet" href="mobile.css">
+  <style>
+    /* Reset: start with no background so we control it per breakpoint */
+    .hero{ background: none !important; }
+
+    /* Mobile-first: show the inline image */
+    .hero-art-mobile{
+      display: block !important;
+      width: 68vw; max-width: 420px; height: auto;
+      margin: 0 auto 12px;
+    }
+
+    /* Desktop (>=1024px): use background instead; hide the inline image */
+    @media (min-width: 1024px){
+      .hero{
+        background: url("https://imgur.com/1qSwsv5.png") top center / 95% auto no-repeat !important;
+      }
+      .hero-art-mobile{ display: none !important; }
+    }
+  </style>
   </head>
 <body>
   <!-- Header & Navigation -->
