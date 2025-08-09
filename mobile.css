@@ -23,6 +23,15 @@ img, video { max-width: 100%; height: auto; }
   display: none;
 }
 
+/* Desktop hero background */
+@media (min-width: 769px){
+  .hero{
+    background: url("https://imgur.com/1qSwsv5.png") top center / 95% auto no-repeat !important;
+  }
+  .hero-art-mobile{ display: none !important; }
+}
+
+
 /* <=900px — mobile/tablet nav */
 @media (max-width: 900px){
   .nav-container{ flex-wrap: wrap; gap: .5rem; align-items: center; }
