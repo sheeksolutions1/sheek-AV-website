@@ -22,7 +22,7 @@
     nav ul li a { font-weight:600; color: var(--primary-color); }
     nav ul li a:hover { color: var(--accent-color); }
     section { padding:4rem 1rem; max-width:1200px; margin:0 auto; }
-    .hero { position:relative; height:70vh; display:flex; align-items:center; justify-content:center; }
+    .hero { position:relative; display:flex; align-items:center; justify-content:center; }
     .hero::after { content:""; position:absolute; inset:0; background: transparent; }
     .hero-content { position:relative; text-align:center; color: var(--primary-color); }
     .hero-content h1 { font-family: var(--font-heading); font-size:3rem; margin-bottom:1rem; }
@@ -100,8 +100,6 @@
   </style>
   <link rel="stylesheet" href="mobile.css">
   <style>
-    /* Reset: start with no background so we control it per breakpoint */
-    .hero{ background: none !important; }
 
     /* Mobile-first: show the inline image */
     .hero-art-mobile{
@@ -110,10 +108,19 @@
       margin: 0 auto 12px;
     }
 
-    /* Desktop (>=1024px): use background instead; hide the inline image */
+  </style>
+  <style>
+    /* Desktop-only: show the full logo without cropping */
     @media (min-width: 1024px){
       .hero{
-        background: url("https://imgur.com/1qSwsv5.png") top center / 95% auto no-repeat !important;
+        background: url("https://imgur.com/1qSwsv5.png") top center / contain no-repeat !important;
+
+        /* Let the section size itself so the entire image is visible on any monitor */
+        height: auto;
+        min-height: 520px;            /* baseline height */
+        height: clamp(520px, 60vw, 780px);  /* scales with screen, capped */
+
+        padding-block: 2rem;          /* breathing room for text/button */
       }
       .hero-art-mobile{ display: none !important; }
     }
