@@ -118,7 +118,7 @@
           <li><a href="index.html#home">Home</a></li>
           <li><a href="about.html">About</a></li>
           <li><a href="index.html#services">Services</a></li>
-          <li><a href="#" id="ratesTrigger">Rates &amp; Packages</a></li>
+          <li><a href="index.html#rates">Rates &amp; Packages</a></li>
           <li><a href="index.html#careers">Careers</a></li>
           <li><a href="index.html#contact">Contact</a></li>
         </ul>
@@ -164,66 +164,6 @@
   <footer>
     <p>&copy; 2025 Sheek Solutions LLC. All rights reserved.</p>
   </footer>
-  <div class="modal-backdrop" id="ratesModal">
-    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="ratesTitle">
-      <h3 id="ratesTitle">Rates &amp; Packages — Quick Details</h3>
-      <form id="ratesForm" class="row">
-        <input type="date" id="rateDate"     placeholder="Event Date">
-        <input type="text" id="rateLocation" placeholder="Location (City, Venue)">
-        <input type="text" id="ratePositions" placeholder="Positions Needed (e.g., Show Caller, A1, V1)">
-        <textarea id="rateNotes" rows="3" placeholder="Additional info (equipment, schedule, load-in/out)"></textarea>
-        <div class="actions">
-          <button type="button" class="btn secondary" id="ratesCancel">Cancel</button>
-          <button type="submit" class="btn">Email Details</button>
-        </div>
-      </form>
-    </div>
-  </div>
-  <script>
-    (function(){
-      const trigger = document.getElementById('ratesTrigger');
-      const modal   = document.getElementById('ratesModal');
-      const form    = document.getElementById('ratesForm');
-      const cancel  = document.getElementById('ratesCancel');
-
-      // Open modal instead of mailto
-      trigger && trigger.addEventListener('click', function(e){
-        e.preventDefault();
-        modal.classList.add('show');
-      });
-
-      // Close modal
-      cancel && cancel.addEventListener('click', function(){
-        modal.classList.remove('show');
-      });
-      // Close when clicking the backdrop
-      modal && modal.addEventListener('click', function(e){
-        if(e.target === modal) modal.classList.remove('show');
-      });
-
-      // On submit, build the email
-      form && form.addEventListener('submit', function(e){
-        e.preventDefault();
-        const date  = document.getElementById('rateDate').value || '';
-        const loc   = document.getElementById('rateLocation').value || '';
-        const pos   = document.getElementById('ratePositions').value || '';
-        const notes = document.getElementById('rateNotes').value || '';
-
-        const subject = encodeURIComponent('Rates & Packages Inquiry');
-        const body = encodeURIComponent(
-          `Hi Sheek Solutions,\n\n` +
-          `I’d like your rates and packages for an upcoming event.\n\n` +
-          `Event Date: ${date}\n` +
-          `Location: ${loc}\n` +
-          `Positions Needed: ${pos}\n` +
-          `Additional Info (equipment, etc.): ${notes}\n\n` +
-          `Thanks,\n[Your Name]`
-        );
-        window.location.href = `mailto:sheeksolutions@gmail.com?subject=${subject}&body=${body}`;
-        modal.classList.remove('show');
-      });
-    })();
-  </script>
   <script>
     (function(){
       const header = document.querySelector('header');
