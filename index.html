@@ -125,26 +125,7 @@
       .hero-art-mobile{ display: none !important; }
     }
   </style>
-  <style>
-    /* Request a Quote modal styles */
-    :root{--primary:#0b3a78;--accent:#f8a400;}
-    .rq-btn{display:inline-block;background:var(--accent);color:#fff;font-weight:700;border:none;border-radius:999px;padding:.9rem 1.25rem;cursor:pointer}
-    .rq-backdrop{position:fixed;inset:0;background:rgba(2,6,23,.6);display:none;align-items:center;justify-content:center;padding:1rem;z-index:9999}
-    .rq-backdrop.open{display:flex}
-    .rq-modal{width:min(640px,100%);background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 40px 120px rgba(0,0,0,.35);font:16px/1.4 system-ui,-apple-system,Segoe UI,Roboto}
-    .rq-head{display:flex;justify-content:space-between;gap:.75rem;align-items:center;padding:14px 18px;border-bottom:1px solid #eee;color:#0b3a78;font-weight:800}
-    .rq-body{padding:16px 18px;display:grid;gap:12px}
-    .rq-row{display:grid;gap:12px;grid-template-columns:1fr 1fr}
-    .rq-row-3{grid-template-columns:1fr 1fr 1fr}
-    @media (max-width:760px){.rq-row,.rq-row-3{grid-template-columns:1fr}}
-    .rq-label{font-size:.9rem;font-weight:700;color:#334155}
-    .rq-inp,.rq-area,.rq-sel{width:100%;margin-top:6px;padding:10px 12px;border:1px solid #e5e7eb;border-radius:10px;font-size:1rem}
-    .rq-area{min-height:110px}
-    .rq-actions{display:flex;flex-wrap:wrap;gap:10px;justify-content:flex-end;padding:14px 18px;border-top:1px solid #eee}
-    .rq-secondary{background:#e5e7eb;color:#111827;border:none;border-radius:10px;padding:10px 14px;font-weight:700;cursor:pointer}
-    .rq-outline{background:#fff;color:#0b3a78;border:1px solid #0b3a78;border-radius:10px;padding:10px 14px;font-weight:700;cursor:pointer}
-    .rq-note{font-size:.82rem;color:#6b7280}
-  </style>
+  
   </head>
 <body>
   <!-- Header & Navigation -->
@@ -174,7 +155,7 @@
       <h1 class="hero-title-desktop">Scalable AV &amp; Production Professionals</h1>
       <h1 class="hero-title-mobile">Scalable AV &amp; Production Professionals</h1>
       <p>Nationwide staffing for corporate events, broadcast, and live productions.</p>
-      <button id="rq-open" class="rq-btn">Request a Quote</button>
+      <button class="rq-btn" data-quote-trigger>Request a Quote</button>
     </div>
   </section>
 
@@ -254,7 +235,7 @@
   <!-- Rates & Packages Section -->
   <section id="rates">
     <h2>Rates &amp; Packages</h2>
-    <button class="rq-btn" onclick="rqOpen()">Request a Quote</button>
+    <button class="rq-btn" data-quote-trigger>Request a Quote</button>
   </section>
 
   <!-- Careers Section -->
@@ -317,117 +298,6 @@
     <div id="osm-map" style="width:100%;height:300px;border-radius:8px;"></div>
   </section>
 
-  <!-- Request a Quote Modal -->
-  <div id="rq-wrap" class="rq-backdrop" role="dialog" aria-modal="true" aria-labelledby="rq-title">
-    <div class="rq-modal">
-      <div class="rq-head"><div id="rq-title">Rates &amp; Packages — Quick Details</div>
-        <button class="rq-outline" onclick="rqClose()">✕</button>
-      </div>
-      <div class="rq-body">
-        <div class="rq-row">
-          <label class="rq-label">Location (City, Venue) *<input id="rq_loc" class="rq-inp" placeholder="Phoenix • Convention Center" /></label>
-          <label class="rq-label">Event Dates *<input id="rq_dates" class="rq-inp" placeholder="Apr 12–15, 2025" /></label>
-        </div>
-        <label class="rq-label">Positions Needed *<input id="rq_roles" class="rq-inp" placeholder="Show Caller (1), A1 (1), V1 (1), LED Tech (2)" /></label>
-        <label class="rq-label">Schedule / Notes<textarea id="rq_notes" class="rq-area" placeholder="Load-in 4/12 07:00, Rehearsal 4/13 15:00, Show 4/14 09:00, Load-out 4/15 18:00. Union house, dock access limited."></textarea></label>
-
-        <details>
-          <summary><strong>More details (optional)</strong></summary>
-          <div class="rq-row-3" style="margin-top:10px">
-            <label class="rq-label">Headcount<input id="rq_head" class="rq-inp" type="number" min="1" placeholder="800" /></label>
-            <label class="rq-label">Union Venue?<select id="rq_union" class="rq-sel"><option>Unknown</option><option>No</option><option>Yes</option></select></label>
-            <label class="rq-label">Links (CAD/RFP)<input id="rq_links" class="rq-inp" placeholder="https://…" /></label>
-          </div>
-          <div class="rq-row">
-            <label class="rq-label">Hotel Provided?<select id="rq_hotel" class="rq-sel"><option>Local crew only</option><option>Yes</option><option>No</option></select></label>
-            <label class="rq-label">Per Diem (USD)<input id="rq_pd" class="rq-inp" type="number" min="0" step="1" placeholder="65" /></label>
-          </div>
-        </details>
-
-        <div class="rq-row">
-          <label class="rq-label">Your Name *<input id="rq_name" class="rq-inp" placeholder="First Last" /></label>
-          <label class="rq-label">Email *<input id="rq_email" class="rq-inp" type="email" placeholder="you@company.com" /></label>
-        </div>
-        <div class="rq-row">
-          <label class="rq-label">Company<input id="rq_co" class="rq-inp" placeholder="Organization (optional)" /></label>
-          <label class="rq-label">Phone<input id="rq_phone" class="rq-inp" placeholder="###-###-#### (optional)" /></label>
-        </div>
-        <div class="rq-note">* required • We’ll convert this into an email draft to <strong>sheeksolutions@gmail.com</strong>.</div>
-      </div>
-      <div class="rq-actions">
-        <button class="rq-secondary" onclick="rqClose()">Cancel</button>
-        <button class="rq-outline" onclick="rqSend(true)">Open in Gmail</button>
-        <button class="rq-btn" onclick="rqSend(false)">Email Details</button>
-      </div>
-    </div>
-  </div>
-
-  <script>
-    const rq = {
-      wrap: document.getElementById('rq-wrap'),
-      openBtn: document.getElementById('rq-open'),
-      fields: id => document.getElementById(id).value.trim()
-    };
-
-    rq.openBtn.addEventListener('click', () => rqOpen());
-    function rqOpen(){ rq.wrap.classList.add('open'); }
-    function rqClose(){ rq.wrap.classList.remove('open'); }
-
-    function rqValid(){
-      const req = ['rq_loc','rq_dates','rq_roles','rq_name','rq_email'];
-      for(const id of req){ if(!rq.fields(id)) { alert('Please complete required fields.'); return false; } }
-      if(!/.+@.+\..+/.test(rq.fields('rq_email'))) { alert('Please enter a valid email.'); return false; }
-      return true;
-    }
-
-    function rqBuild(){
-      const to = 'sheeksolutions@gmail.com';
-      const subject = 'Quote Requested from Sheek Solutions Website';
-      const L = v => v || '—';
-      const lines = [
-        'Hello Sheek Solutions Team,',
-        '',
-        'Please provide a quote for corporate AV/Production labor based on the details below.',
-        '',
-        '— Project —',
-        `Location: ${rq.fields('rq_loc')}`,
-        `Dates: ${rq.fields('rq_dates')}`,
-        `Positions Needed: ${rq.fields('rq_roles')}`,
-        `Schedule/Notes: ${L(rq.fields('rq_notes'))}`,
-        '',
-        '— Extras —',
-        `Headcount: ${L(rq.fields('rq_head'))}`,
-        `Union Venue: ${L(rq.fields('rq_union'))}`,
-        `Links: ${L(rq.fields('rq_links'))}`,
-        `Hotel: ${L(rq.fields('rq_hotel'))}`,
-        `Per Diem: ${L(rq.fields('rq_pd'))}`,
-        '',
-        '— Contact —',
-        `Name: ${rq.fields('rq_name')}`,
-        `Email: ${rq.fields('rq_email')}`,
-        `Company: ${L(rq.fields('rq_co'))}`,
-        `Phone: ${L(rq.fields('rq_phone'))}`,
-        '',
-        'Thank you!'
-      ];
-      const body = encodeURIComponent(lines.join('\n'));
-      return {
-        mailto:`mailto:${encodeURIComponent(to)}?subject=${encodeURIComponent(subject)}&body=${body}`,
-        gmail:`https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(to)}&su=${encodeURIComponent(subject)}&body=${body}`
-      };
-    }
-
-    function rqSend(useGmail){
-      if(!rqValid()) return;
-      const links = rqBuild();
-      window.location.href = useGmail ? links.gmail : links.mailto;
-      rqClose();
-    }
-
-    document.addEventListener('keydown', e => { if(e.key==='Escape') rqClose(); });
-    rq.wrap.addEventListener('click', e => { if(e.target === rq.wrap) rqClose(); });
-  </script>
-
   <!-- Footer -->
   <footer>
     <p>&copy; 2025 Sheek Solutions LLC. All rights reserved.</p>
@@ -468,7 +338,138 @@
     })();
   </script>
 
-  
+<!-- ===== Sheek Solutions • Request a Quote (drop-in) ===== -->
+<script>
+(function(){
+  // ---------- Inject minimal CSS ----------
+  const css = `
+  .rq-backdrop{position:fixed;inset:0;background:rgba(2,6,23,.6);display:none;align-items:center;justify-content:center;padding:1rem;z-index:9999}
+  .rq-backdrop.open{display:flex}
+  .rq-modal{width:min(640px,100%);background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 40px 120px rgba(0,0,0,.35);font:16px/1.45 system-ui,-apple-system,Segoe UI,Roboto}
+  .rq-head{display:flex;justify-content:space-between;gap:.75rem;align-items:center;padding:14px 18px;border-bottom:1px solid #eee;color:#0b3a78;font-weight:800}
+  .rq-body{padding:16px 18px;display:grid;gap:12px}
+  .rq-row{display:grid;gap:12px;grid-template-columns:1fr 1fr}
+  @media (max-width:760px){.rq-row{grid-template-columns:1fr}}
+  .rq-label{font-size:.9rem;font-weight:700;color:#334155}
+  .rq-inp,.rq-area{width:100%;margin-top:6px;padding:10px 12px;border:1px solid #e5e7eb;border-radius:10px;font-size:1rem}
+  .rq-area{min-height:110px}
+  .rq-actions{display:flex;flex-wrap:wrap;gap:10px;justify-content:flex-end;padding:14px 18px;border-top:1px solid #eee}
+  .rq-btn{background:#FFA500;color:#fff;border:none;border-radius:10px;padding:10px 14px;font-weight:700;cursor:pointer}
+  .rq-outline{background:#fff;color:#0b3a78;border:1px solid #0b3a78;border-radius:10px;padding:10px 14px;font-weight:700;cursor:pointer}
+  .rq-secondary{background:#e5e7eb;color:#111827;border:none;border-radius:10px;padding:10px 14px;font-weight:700;cursor:pointer}
+  .rq-note{font-size:.82rem;color:#6b7280}
+  `;
+  const style = document.createElement('style'); style.textContent = css; document.head.appendChild(style);
+
+  // ---------- Build modal ----------
+  const wrap = document.createElement('div');
+  wrap.className = 'rq-backdrop'; wrap.id = 'rq-wrap';
+  wrap.innerHTML = `
+    <div class="rq-modal" role="dialog" aria-modal="true" aria-labelledby="rq-title">
+      <div class="rq-head">
+        <div id="rq-title">Rates &amp; Packages — Quick Details</div>
+        <button class="rq-outline" type="button" id="rq-close">✕</button>
+      </div>
+      <form class="rq-body" id="rq-form">
+        <div class="rq-row">
+          <label class="rq-label">Location (City, Venue) *<input id="rq_loc" class="rq-inp" placeholder="Phoenix • Convention Center"></label>
+          <label class="rq-label">Dates *<input id="rq_dates" class="rq-inp" placeholder="Apr 12–15, 2025"></label>
+        </div>
+        <label class="rq-label">Positions Needed *<input id="rq_roles" class="rq-inp" placeholder="Show Caller (1), A1 (1), V1 (1), LED Tech (2)"></label>
+        <label class="rq-label">Schedule / Notes<textarea id="rq_notes" class="rq-area" placeholder="Load-in 4/12 07:00, Rehearsal 4/13 15:00, Show 4/14 09:00, Load-out 4/15 18:00. Union house, dock access limited."></textarea></label>
+        <div class="rq-row">
+          <label class="rq-label">Your Name *<input id="rq_name" class="rq-inp" placeholder="First Last"></label>
+          <label class="rq-label">Email *<input id="rq_email" class="rq-inp" type="email" placeholder="you@company.com"></label>
+        </div>
+        <div class="rq-row">
+          <label class="rq-label">Company<input id="rq_co" class="rq-inp" placeholder="Organization (optional)"></label>
+          <label class="rq-label">Phone<input id="rq_phone" class="rq-inp" placeholder="###-###-#### (optional)"></label>
+        </div>
+        <div class="rq-note">* required • This will open a pre-filled email to <b>sheeksolutions@gmail.com</b>.</div>
+        <div class="rq-actions">
+          <button class="rq-secondary" type="button" id="rq-cancel">Cancel</button>
+          <button class="rq-outline"  type="button" id="rq-gmail">Open in Gmail</button>
+          <button class="rq-btn"      type="submit">Email Details</button>
+        </div>
+      </form>
+    </div>`;
+  document.body.appendChild(wrap);
+
+  // ---------- Helpers ----------
+  const open = () => wrap.classList.add('open');
+  const close = () => wrap.classList.remove('open');
+  const v = id => (document.getElementById(id)?.value || '').trim();
+  const valid = () => {
+    if (!v('rq_loc') || !v('rq_dates') || !v('rq_roles') || !v('rq_name') || !/.+@.+\..+/.test(v('rq_email'))) {
+      alert('Please complete Location, Dates, Positions, Name, and a valid Email.');
+      return false;
+    }
+    return true;
+  };
+  const build = () => {
+    const to = 'sheeksolutions@gmail.com';
+    const subject = 'Quote Requested from Sheek Solutions Website';
+    const lines = [
+      'Hello Sheek Solutions Team,','',
+      'Please provide a quote for corporate AV/Production labor based on the details below.','',
+      '— Project —',
+      `Location: ${v('rq_loc')}`,
+      `Dates: ${v('rq_dates')}`,
+      `Positions Needed: ${v('rq_roles')}`,
+      `Schedule/Notes: ${v('rq_notes') || '—'}`,'',
+      '— Contact —',
+      `Name: ${v('rq_name')}`,
+      `Email: ${v('rq_email')}`,
+      `Company: ${v('rq_co') || '—'}`,
+      `Phone: ${v('rq_phone') || '—'}`,'',
+      'Thank you!'
+    ];
+    const body = encodeURIComponent(lines.join('\n'));
+    const mailto = `mailto:${encodeURIComponent(to)}?subject=${encodeURIComponent(subject)}&body=${body}`;
+    const gmail  = 'https://mail.google.com/mail/?view=cm&fs=1'
+                 + `&to=${encodeURIComponent(to)}&su=${encodeURIComponent(subject)}&body=${body}`;
+    return { mailto, gmail };
+  };
+
+  // ---------- Wire up openers (hero + nav or any matching text) ----------
+  const triggers = new Set();
+  ['#quoteBtn','#ratesTrigger','[data-quote-trigger]'].forEach(sel=>{
+    const el=document.querySelector(sel); if(el) triggers.add(el);
+  });
+  // Fallback: any button/link whose text is "Request a Quote"
+  document.querySelectorAll('a,button').forEach(el=>{
+    if((el.textContent||'').trim().toLowerCase()==='request a quote') triggers.add(el);
+  });
+  triggers.forEach(el=> el.addEventListener('click', e=>{ e.preventDefault(); open(); }));
+
+  // ---------- Close & submit handlers ----------
+  document.getElementById('rq-close').addEventListener('click', close);
+  document.getElementById('rq-cancel').addEventListener('click', close);
+  wrap.addEventListener('click', e => { if(e.target===wrap) close(); });
+  document.addEventListener('keydown', e => { if(e.key==='Escape') close(); });
+
+  document.getElementById('rq-gmail').addEventListener('click', ()=>{
+    if(!valid()) return;
+    const { gmail } = build();
+    window.open(gmail, '_blank', 'noopener');
+    close();
+  });
+
+  document.getElementById('rq-form').addEventListener('submit', e=>{
+    e.preventDefault();
+    if(!valid()) return;
+    const { mailto, gmail } = build();
+
+    // Try default mail app; if no handler, fall back to Gmail
+    const before = Date.now();
+    window.location.href = mailto;
+    setTimeout(()=>{ if(Date.now() - before < 1200) window.open(gmail,'_blank','noopener'); }, 700);
+    close();
+  });
+})();
+</script>
+<!-- ===== /Sheek Solutions • Request a Quote ===== -->
+
   <script>
     (function(){
       const header = document.querySelector('header');
