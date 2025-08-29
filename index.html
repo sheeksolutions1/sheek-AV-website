@@ -463,55 +463,37 @@
 </script>
 <!-- ===== /Sheek Solutions • Request a Quote ===== -->
 
-<!-- === Sheek Solutions: make hero "Request a Quote" open the same template === -->
+<!-- === Fix: make hero "Request a Quote" clickable + open the same modal === -->
+<style>
+  /* The hero overlay was sitting on top and eating clicks */
+  .hero { position: relative; }
+  .hero::after { pointer-events: none !important; z-index: 0 !important; }
+  .hero-content { position: relative; z-index: 1; }
+</style>
+
 <script>
 (function () {
-  // 1) Locate the hero "Request a Quote" button
-  const heroBtn =
-    document.getElementById('quoteBtn') ||
-    document.querySelector('.hero .btn-primary') ||
-    Array.from(document.querySelectorAll('button,a'))
-      .find(el => (el.textContent || '').trim().toLowerCase() === 'request a quote');
+  // Find the hero CTA (by id or by visible text)
+  var heroBtn =
+    document.getElementById('rq-open') ||
+    Array.from(document.querySelectorAll('.hero button, .hero a'))
+      .find(function (el) { return (el.textContent || '').trim().toLowerCase() === 'request a quote'; });
 
-  // 2) Function to open whichever quote modal you already have on the page
-  function openQuoteTemplate(e) {
+  // Your modal wrapper (the one that uses .open)
+  var modal = document.getElementById('rq-wrap');
+
+  function openQuote(e){
     e && e.preventDefault();
-
-    // Your two possible wrappers (support both)
-    const wizard = document.getElementById('rq-wrap');     // uses .open
-    const simple = document.getElementById('ratesModal');  // uses .show
-
-    if (wizard) {
-      wizard.classList.add('open');
-      return;
-    }
-    if (simple) {
-      simple.classList.add('show');
-      return;
-    }
-
-    // If no modal is in DOM, fall back to the Rates & Packages anchor (keeps UX working)
-    const anchor = document.querySelector('a[href="#rates"], a[href="index.html#rates"]');
-    if (anchor) anchor.click();
-    else console.warn('Quote template not found: expected #rq-wrap or #ratesModal.');
+    if (modal) modal.classList.add('open');
   }
 
-  // 3) Bind the click
   if (heroBtn) {
-    heroBtn.setAttribute('type', 'button'); // prevent accidental form submits
-    heroBtn.addEventListener('click', openQuoteTemplate);
+    heroBtn.type = 'button';              // don’t submit any forms
+    heroBtn.addEventListener('click', openQuote);
   }
-
-  // 4) Optional: also bind any other “Request a Quote” buttons on the page
-  document.querySelectorAll('[data-quote-trigger]').forEach(el =>
-    el.addEventListener('click', openQuoteTemplate)
-  );
-
-  // 5) Expose for debugging if needed
-  window.openQuoteTemplate = openQuoteTemplate;
 })();
 </script>
-<!-- === /Sheek Solutions patch === -->
+<!-- === /Fix === -->
 
 <!-- === MOBILE SCROLL FIX for Quote Modal === -->
 <style>
