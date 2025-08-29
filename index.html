@@ -513,6 +513,88 @@
 </script>
 <!-- === /Sheek Solutions patch === -->
 
+<!-- === MOBILE SCROLL FIX for Quote Modal === -->
+<style>
+  /* Use dynamic viewport on mobile; fall back to vh */
+  :root { --vh: 100dvh; } /* updated by JS below */
+
+  /* The modal container must flex vertically and cap to viewport height */
+  .rq-modal, .modal {
+    display: flex;
+    flex-direction: column;
+    width: min(680px, 100%);
+    max-height: calc(var(--vh) - 24px); /* keep some breathing room */
+    border-radius: 14px;
+    overflow: hidden; /* clip internals */
+  }
+
+  /* The scrolling body area */
+  .rq-body, #ratesForm {
+    flex: 1 1 auto;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch; /* iOS momentum */
+    padding: 16px 18px;
+  }
+
+  /* Keep the button row visible; pad for iPhone home indicator */
+  .rq-actions, .modal .actions {
+    position: sticky;
+    bottom: 0;
+    background: #fff;
+    padding: 12px 18px calc(12px + env(safe-area-inset-bottom, 0));
+    border-top: 1px solid #eee;
+    z-index: 1;
+  }
+
+  /* Prevent page behind the modal from scrolling */
+  html.modal-open, body.modal-open { overflow: hidden; height: 100%; }
+
+  /* Just in case a backdrop/overlay intercepts taps */
+  .rq-backdrop, #ratesModal { align-items: center; justify-content: center; }
+  .rq-backdrop::before, .rq-backdrop::after,
+  #ratesModal::before,  #ratesModal::after { pointer-events: none; }
+</style>
+
+<script>
+  // Use visual viewport to set an accurate --vh on mobile (especially iOS with keyboard)
+  (function () {
+    const setVH = () => {
+      const h = (window.visualViewport && visualViewport.height) || window.innerHeight;
+      document.documentElement.style.setProperty('--vh', `${h}px`);
+    };
+    setVH();
+    window.addEventListener('resize', setVH);
+    window.visualViewport && visualViewport.addEventListener('resize', setVH);
+
+    // Lock/unlock background scroll whenever the modal opens/closes
+    const wrap = document.getElementById('rq-wrap') || document.getElementById('ratesModal');
+    if (wrap) {
+      const toggleLock = (on) => {
+        document.documentElement.classList.toggle('modal-open', on);
+        document.body.classList.toggle('modal-open', on);
+        setVH(); // recalc in case keyboard changed viewport
+      };
+      // Observe class changes: .open (rq) or .show (simple)
+      new MutationObserver(() => {
+        const shown = wrap.classList.contains('open') || wrap.classList.contains('show');
+        toggleLock(shown);
+      }).observe(wrap, { attributes: true, attributeFilter: ['class'] });
+
+      // Also close on backdrop click (safety)
+      wrap.addEventListener('click', (e) => {
+        if (e.target === wrap) {
+          wrap.classList.remove('open'); wrap.classList.remove('show');
+        }
+      });
+      // Close on ESC
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') { wrap.classList.remove('open'); wrap.classList.remove('show'); }
+      });
+    }
+  })();
+</script>
+<!-- === /MOBILE SCROLL FIX === -->
+
   <script>
     (function(){
       const header = document.querySelector('header');
