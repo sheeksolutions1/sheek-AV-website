@@ -24,7 +24,11 @@
     section { padding:4rem 1rem; max-width:1200px; margin:0 auto; }
     .hero { position:relative; display:flex; align-items:center; justify-content:center; }
     .hero::after { content:""; position:absolute; inset:0; background: transparent; }
-    .hero-content { position:relative; text-align:center; color: var(--primary-color); }
+    .hero::before, .hero::after, .hero-overlay {
+      pointer-events: none !important;
+      z-index: 0 !important;
+    }
+    .hero-content { position:relative; z-index:2; text-align:center; color: var(--primary-color); }
     .hero-content h1 { font-family: var(--font-heading); font-size:3rem; margin-bottom:1rem; }
     .hero-content p { font-size:1.2rem; opacity:0.8; margin-bottom:2rem; }
       /* hero-title-mobile styles moved to mobile.css */
@@ -431,17 +435,6 @@
     return { mailto, gmail };
   };
 
-  // ---------- Wire up openers (hero + nav or any matching text) ----------
-  const triggers = new Set();
-  ['#quoteBtn','#ratesTrigger','[data-quote-trigger]'].forEach(sel=>{
-    const el=document.querySelector(sel); if(el) triggers.add(el);
-  });
-  // Fallback: any button/link whose text is "Request a Quote"
-  document.querySelectorAll('a,button').forEach(el=>{
-    if((el.textContent||'').trim().toLowerCase()==='request a quote') triggers.add(el);
-  });
-  triggers.forEach(el=> el.addEventListener('click', e=>{ e.preventDefault(); open(); }));
-
   // ---------- Close & submit handlers ----------
   document.getElementById('rq-close').addEventListener('click', close);
   document.getElementById('rq-cancel').addEventListener('click', close);
@@ -469,6 +462,56 @@
 })();
 </script>
 <!-- ===== /Sheek Solutions • Request a Quote ===== -->
+
+<!-- === Sheek Solutions: make hero "Request a Quote" open the same template === -->
+<script>
+(function () {
+  // 1) Locate the hero "Request a Quote" button
+  const heroBtn =
+    document.getElementById('quoteBtn') ||
+    document.querySelector('.hero .btn-primary') ||
+    Array.from(document.querySelectorAll('button,a'))
+      .find(el => (el.textContent || '').trim().toLowerCase() === 'request a quote');
+
+  // 2) Function to open whichever quote modal you already have on the page
+  function openQuoteTemplate(e) {
+    e && e.preventDefault();
+
+    // Your two possible wrappers (support both)
+    const wizard = document.getElementById('rq-wrap');     // uses .open
+    const simple = document.getElementById('ratesModal');  // uses .show
+
+    if (wizard) {
+      wizard.classList.add('open');
+      return;
+    }
+    if (simple) {
+      simple.classList.add('show');
+      return;
+    }
+
+    // If no modal is in DOM, fall back to the Rates & Packages anchor (keeps UX working)
+    const anchor = document.querySelector('a[href="#rates"], a[href="index.html#rates"]');
+    if (anchor) anchor.click();
+    else console.warn('Quote template not found: expected #rq-wrap or #ratesModal.');
+  }
+
+  // 3) Bind the click
+  if (heroBtn) {
+    heroBtn.setAttribute('type', 'button'); // prevent accidental form submits
+    heroBtn.addEventListener('click', openQuoteTemplate);
+  }
+
+  // 4) Optional: also bind any other “Request a Quote” buttons on the page
+  document.querySelectorAll('[data-quote-trigger]').forEach(el =>
+    el.addEventListener('click', openQuoteTemplate)
+  );
+
+  // 5) Expose for debugging if needed
+  window.openQuoteTemplate = openQuoteTemplate;
+})();
+</script>
+<!-- === /Sheek Solutions patch === -->
 
   <script>
     (function(){
